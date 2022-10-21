@@ -1,4 +1,4 @@
-# default
+# default base yaml
 
 group: 0_test                                               # name of experiment group
 name: debug                                                 # name of experiment run

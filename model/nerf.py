@@ -46,7 +46,8 @@ class Model(base.Model):
 
     def train(self,opt):
         # before training
-        log.title("TRAINING START")
+        log.title("TRAINING START nerf.py")
+        log.info("Training epoch {}, {}".format(self.epoch_start, opt.max_iter))
         self.timer = edict(start=time.time(),it_mean=None)
         self.graph.train()
         self.ep = 0 # dummy for timer
@@ -150,6 +151,7 @@ class Model(base.Model):
     def generate_videos_synthesis(self,opt,eps=1e-10):
         self.graph.eval()
         if opt.data.dataset=="blender":
+            print("OUTPUT PATH ", opt.output_path)
             test_path = "{}/test_view".format(opt.output_path)
             # assume the test view synthesis are already generated
             print("writing videos...")

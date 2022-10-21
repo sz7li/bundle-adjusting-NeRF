@@ -9,8 +9,8 @@ arch:                                                       # architectural opti
 barf_c2f:                                                   # coarse-to-fine scheduling on positional encoding
 
 data:                                                       # data options
-    image_fname: data/cat.jpg                               # path to image file
-    image_size: [360,480]                                   # original image size
+    image_fname: data/test_3.jpg                               # path to image file
+    image_size: [380,620]                                   # original image size
     patch_crop: [180,180]                                   # crop size of image patches to align
 
 warp:                                                       # image warping options

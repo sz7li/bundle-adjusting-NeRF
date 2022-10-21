@@ -6,7 +6,7 @@ model:                                                      # type of model (mus
 yaml:                                                       # config file (must be specified from command line)
 seed: 0                                                     # seed number (for both numpy and pytorch)
 gpu: 0                                                      # GPU index number
-cpu: false                                                  # run only on CPU (not supported now)
+cpu: False                                                  # run only on CPU (not supported now)
 load:                                                       # load checkpoint from filename
 
 arch: {}                                                    # architectural options
@@ -49,10 +49,10 @@ tb:                                                         # TensorBoard option
     num_images: [4,8]                                       # number of (tiled) images to visualize in TensorBoard
 visdom:                                                     # Visdom options
     server: localhost                                       # server to host Visdom
-    port: 9000                                              # port number for Visdom
+    port: 8097                                              # port number for Visdom
 
 freq:                                                       # periodic actions during training
     scalar: 200                                             # log losses and scalar states (every N iterations)
     vis: 1000                                               # visualize results (every N iterations)
     val: 20                                                 # validate on val set (every N epochs)
-    ckpt: 50                                                # save checkpoint (every N epochs)
+    ckpt: 1                                                # save checkpoint (every N epochs)

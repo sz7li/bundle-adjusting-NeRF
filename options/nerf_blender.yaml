@@ -19,14 +19,14 @@ nerf:                                                       # NeRF-specific opti
     sample_stratified: true                                 # stratified sampling
     fine_sampling: false                                    # hierarchical sampling with another NeRF
     sample_intvs_fine:                                      # number of samples for the fine NeRF
-    rand_rays: 1024                                         # number of random rays for each step
+    rand_rays: 512                                         # number of random rays for each step
     density_noise_reg:                                      # Gaussian noise on density output as regularization
     setbg_opaque: false                                     # fill transparent rendering with known background color (Blender only)
 
 data:                                                       # data options
     dataset: blender                                        # dataset name
     scene: lego                                             # scene name
-    image_size: [400,400]                                   # input image sizes [height,width]
+    image_size: [50,50]                                   # input image sizes [height,width]
     num_workers: 4                                          # number of parallel workers for data loading
     preload: true                                           # preload the entire dataset into the memory
     bgcolor: 1                                              # background color (Blender only)
@@ -49,7 +49,7 @@ optim:                                                      # optimization optio
 
 batch_size:                                                 # batch size (not used for NeRF/BARF)
 max_epoch:                                                  # train to maximum number of epochs (not used for NeRF/BARF)
-max_iter: 200000                                            # train to maximum number of iterations
+max_iter: 400000                                            # train to maximum number of iterations
 
 trimesh:                                                    # options for marching cubes to extract 3D mesh
     res: 128                                                # 3D sampling resolution

@@ -8,6 +8,7 @@ import torch.utils.tensorboard
 import visdom
 import importlib
 import tqdm
+from PIL import Image
 from easydict import EasyDict as edict
 
 import util,util_vis
@@ -23,9 +24,18 @@ class Model():
 
     def load_dataset(self,opt,eval_split="val"):
         data = importlib.import_module("data.{}".format(opt.data.dataset))
-        log.info("loading training data...")
+        log.info("loading training data... AEEEEEE")
+        print("data.{}".format(opt.data.dataset))
         self.train_data = data.Dataset(opt,split="train",subset=opt.data.train_sub)
         self.train_loader = self.train_data.setup_loader(opt,shuffle=True)
+        # t = iter(self.train_data)
+        # print("SHAPE T")
+        # d = next(t)
+        # print(d['image'].shape)
+        # im = d['image'].numpy()
+        # reshaped_im = im.reshape((400, 400, 3))
+        # np.save('reshaped_im.npy', reshaped_im)
+
         log.info("loading test data...")
         if opt.data.val_on_test: eval_split = "test"
         self.test_data = data.Dataset(opt,split=eval_split,subset=opt.data.val_sub)
@@ -77,7 +87,8 @@ class Model():
 
     def train(self,opt):
         # before training
-        log.title("TRAINING START")
+        log.title("TRAINING START AEEE")
+        log.info("Training epoch ", self.epoch_start, opt.max_epoch)
         self.timer = edict(start=time.time(),it_mean=None)
         self.it = self.iter_start
         # training

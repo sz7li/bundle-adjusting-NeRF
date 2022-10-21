@@ -252,9 +252,12 @@ class NeRF(nerf.NeRF):
         input_enc = super().positional_encoding(opt,input,L=L) # [B,...,2NL]
         # coarse-to-fine: smoothly mask positional encoding for BARF
         if opt.barf_c2f is not None:
+            print("barf_______c2f:", opt.barf_c2f) 
             # set weights for different frequency bands
             start,end = opt.barf_c2f
             alpha = (self.progress.data-start)/(end-start)*L
+            print("Self progress data", self.progress.data)
+            print("Alpha_____: ", alpha)
             k = torch.arange(L,dtype=torch.float32,device=opt.device)
             weight = (1-(alpha-k).clamp_(min=0,max=1).mul_(np.pi).cos_())/2
             # apply weights

@@ -255,6 +255,9 @@ class NeRF(nerf.NeRF):
             # set weights for different frequency bands
             start,end = opt.barf_c2f
             alpha = (self.progress.data-start)/(end-start)*L
+            print("barf_C2F --------------------------> ", opt.barf_c2f)
+            print("ALPHA --------------------------> ", alpha)
+            print("Progress data --------------------------> ", self.progress.data)
             k = torch.arange(L,dtype=torch.float32,device=opt.device)
             weight = (1-(alpha-k).clamp_(min=0,max=1).mul_(np.pi).cos_())/2
             # apply weights

@@ -255,6 +255,7 @@ class NeRF(nerf.NeRF):
             # set weights for different frequency bands
             start,end = opt.barf_c2f
             alpha = (self.progress.data-start)/(end-start)*L
+            print("L --------------------------> ", L)
             print("barf_C2F --------------------------> ", opt.barf_c2f)
             print("ALPHA --------------------------> ", alpha)
             print("Progress data --------------------------> ", self.progress.data)

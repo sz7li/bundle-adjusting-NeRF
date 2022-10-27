@@ -64,8 +64,8 @@ class Dataset(base.Dataset):
 
     def get_camera(self,opt,idx):
         self.focal = self.raw_W*4.25/(5.62)
-        print("FOCAL LENGTH: ", self.focal)
-        print("Image size: ", self.raw_H, self.raw_W)
+        # print("FOCAL LENGTH: ", self.focal)
+        # print("Image size: ", self.raw_H, self.raw_W)
         intr = torch.tensor([[self.focal,0,self.raw_W/2],
                              [0,self.focal,self.raw_H/2],
                              [0,0,1]]).float()

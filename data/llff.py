@@ -48,6 +48,7 @@ class Dataset(base.Dataset):
         poses_raw[...,0],poses_raw[...,1] = poses_raw[...,1],-poses_raw[...,0]
         raw_H,raw_W,self.focal = cam_data[0,:,-1]
         assert(self.raw_H==raw_H and self.raw_W==raw_W)
+        print("FOCAL LENGTH: ", self.focal)
         # parse depth bounds
         bounds = data[:,-2:] # [N,2]
         scale = 1./(bounds.min()*0.75) # not sure how this was determined

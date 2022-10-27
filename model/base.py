@@ -29,9 +29,9 @@ class Model():
         train_loader_iter = iter(self.train_loader)
         sample_data = next(train_loader_iter)
         image = sample_data['image'].numpy()
-        reshaped_im = image.reshape((480, 640, 3))
-        print(reshaped_im.shape)
-        np.save('reshaped_im.npy', reshaped_im)
+        # reshaped_im = image.reshape((480, 640, 3))
+        print(image.shape)
+        np.save('image.npy', image)
         print("Np saved")
 
         log.info("loading test data...")

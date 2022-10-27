@@ -17,12 +17,13 @@ from util import log,debug
 class Dataset(base.Dataset):
 
     def __init__(self,opt,split="train",subset=None):
-        self.raw_H,self.raw_W = 1080,1920
+        self.raw_H,self.raw_W = 3456, 4608
         super().__init__(opt,split)
         self.root = opt.data.root or "data/iphone"
         self.path = "{}/{}".format(self.root,opt.data.scene)
         self.path_image = "{}/images".format(self.path)
         self.list = sorted(os.listdir(self.path_image),key=lambda f: int(f.split(".")[0]))
+        print("Image list: ", self.list)
         # manually split train/val subsets
         num_val_split = int(len(self)*opt.data.val_ratio)
         self.list = self.list[:-num_val_split] if split=="train" else self.list[-num_val_split:]
@@ -58,11 +59,11 @@ class Dataset(base.Dataset):
 
     def get_image(self,opt,idx):
         image_fname = "{}/{}".format(self.path_image,self.list[idx])
-        image = PIL.Image.fromarray(imageio.imread(image_fname)) # directly using PIL.Image.open() leads to weird corruption....
+        image = PIL.Image.fromarray(np.rot90(imageio.imread(image_fname))) # directly using PIL.Image.open() leads to weird corruption....
         return image
 
     def get_camera(self,opt,idx):
-        self.focal = self.raw_W*4.2/(12.8/2.55)
+        self.focal = self.raw_W*4.25/(5.62)
         intr = torch.tensor([[self.focal,0,self.raw_W/2],
                              [0,self.focal,self.raw_H/2],
                              [0,0,1]]).float()

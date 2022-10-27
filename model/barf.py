@@ -265,3 +265,5 @@ class NeRF(nerf.NeRF):
             shape = input_enc.shape
             input_enc = (input_enc.view(-1,L)*weight).view(*shape)
         return input_enc
+
+

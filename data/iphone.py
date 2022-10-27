@@ -22,7 +22,7 @@ class Dataset(base.Dataset):
         self.root = opt.data.root or "data/iphone"
         self.path = "{}/{}".format(self.root,opt.data.scene)
         self.path_image = "{}/images".format(self.path)
-        self.list = sorted(os.listdir(self.path_image),key=lambda f: int(f.split(".")[0].split('_')[1]))
+        self.list = sorted(os.listdir(self.path_image),key=lambda f: int(f.split(".")[0]))
         print("Image list: ", self.list)
         # manually split train/val subsets
         num_val_split = int(len(self)*opt.data.val_ratio)

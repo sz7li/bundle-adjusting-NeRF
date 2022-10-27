@@ -27,9 +27,12 @@ class Model():
         self.train_data = data.Dataset(opt,split="train",subset=opt.data.train_sub)
         self.train_loader = self.train_data.setup_loader(opt,shuffle=True)
         train_loader_iter = iter(self.train_loader)
-        sample = next(train_loader_iter)
-        print(sample)
-
+        sample_data = next(train_loader_iter)
+        image = sample_data['image'].numpy()
+        reshaped_im = image.reshape((480, 640, 3))
+        print(reshaped_im.shape)
+        np.save('reshaped_im.npy', reshaped_im)
+        print("Np saved")
 
         log.info("loading test data...")
         if opt.data.val_on_test: eval_split = "test"

@@ -237,7 +237,9 @@ class Graph(nerf.Graph):
             pose = camera.pose.compose([pose_refine,pose])
         elif mode in ["val","eval","test-optim"]:
             print("mode is ", ["val","eval","test-optim"])
+            print(var.pose)
             # align test pose to refined coordinate system (up to sim3)
+            print(self.sim3)
             sim3 = self.sim3
             center = torch.zeros(1,1,3,device=opt.device)
             center = camera.cam2world(center,var.pose)[:,0] # [N,3]

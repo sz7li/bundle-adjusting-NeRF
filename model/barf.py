@@ -233,8 +233,7 @@ class Graph(nerf.Graph):
                 pose = self.pose_eye
             # add learnable pose correction
             var.se3_refine = self.se3_refine.weight[var.idx]
-            print(var.idx)
-            print(self.se3_refine.weight[var.idx])
+            print("var idx", var.idx)
             pose_refine = camera.lie.se3_to_SE3(var.se3_refine)
             print("pose refine ", pose_refine)
             pose = camera.pose.compose([pose_refine,pose])

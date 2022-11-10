@@ -215,6 +215,7 @@ class Graph(nerf.Graph):
         self.pose_eye = torch.eye(3,4).to(opt.device)
 
     def get_pose(self,opt,var,mode=None):
+        print("Get pose in barf graph")
         if mode=="train":
             # add the pre-generated pose perturbations
             if opt.data.dataset=="blender":

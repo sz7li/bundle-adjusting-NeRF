@@ -46,7 +46,7 @@ class Model(base.Model):
 
     def train(self,opt):
         # before training
-        log.title("TRAINING START")
+        log.title("__TRAINING START__")
         self.timer = edict(start=time.time(),it_mean=None)
         self.graph.train()
         self.ep = 0 # dummy for timer

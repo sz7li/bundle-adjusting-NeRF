@@ -232,6 +232,9 @@ class Graph(base.Graph):
     def render(self,opt,pose,intr=None,ray_idx=None,mode=None):
         batch_size = len(pose)
         center,ray = camera.get_center_and_ray(opt,pose,intr=intr) # [B,HW,3]
+        print("Rendering ")
+        print(center[0])
+        print(ray[0])
         while ray.isnan().any(): # TODO: weird bug, ray becomes NaN arbitrarily if batch_size>1, not deterministic reproducible
             center,ray = camera.get_center_and_ray(opt,pose,intr=intr) # [B,HW,3]
         if ray_idx is not None:

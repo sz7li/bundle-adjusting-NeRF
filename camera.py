@@ -234,6 +234,7 @@ def get_center_and_ray(opt,pose,intr=None): # [HW,2]
         xy_grid = torch.stack([X,Y],dim=-1).view(-1,2) # [HW,2]
     # compute center and ray
     batch_size = len(pose)
+    # pixel meshgrid -> camera coords -> world coordinates
     xy_grid = xy_grid.repeat(batch_size,1,1) # [B,HW,2]
     grid_3D = img2cam(to_hom(xy_grid),intr) # [B,HW,3]
     center_3D = torch.zeros_like(grid_3D) # [B,HW,3]

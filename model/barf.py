@@ -217,12 +217,17 @@ class Graph(nerf.Graph):
     def get_pose(self,opt,var,mode=None):
         print("Get pose in barf graph")
         if mode=="train":
+            print("Mode is train")
             # add the pre-generated pose perturbations
             if opt.data.dataset=="blender":
                 if opt.camera.noise:
                     var.pose_noise = self.pose_noise[var.idx]
+                    print("Composing pose, ", pose)
                     pose = camera.pose.compose([var.pose_noise,var.pose])
-                else: pose = var.pose
+                    print("Composed pose with noise, ", pose)
+                else:
+                    print("Setting pose to ", var.pose) 
+                    pose = var.pose
             else: 
                 print("Setting pose to ", self.pose_eye)
                 pose = self.pose_eye

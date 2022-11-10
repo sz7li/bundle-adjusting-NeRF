@@ -226,7 +226,7 @@ class Graph(nerf.Graph):
                     pose = camera.pose.compose([var.pose_noise,var.pose])
                     print("Composed pose with noise, ", pose)
                 else:
-                    print("Setting pose to ", var.pose) 
+                    print("Setting blender pose to ", var.pose) 
                     pose = var.pose
             else: 
                 print("Setting pose to ", self.pose_eye)
@@ -235,6 +235,7 @@ class Graph(nerf.Graph):
             var.se3_refine = self.se3_refine.weight[var.idx]
             pose_refine = camera.lie.se3_to_SE3(var.se3_refine)
             pose = camera.pose.compose([pose_refine,pose])
+            print("Learnable pose correction ", pose)
         elif mode in ["val","eval","test-optim"]:
             print("mode is ", ["val","eval","test-optim"])
             print(var.pose)

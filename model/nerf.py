@@ -234,8 +234,8 @@ class Graph(base.Graph):
     def render(self,opt,pose,intr=None,ray_idx=None,mode=None):
         batch_size = len(pose)
         center,ray = camera.get_center_and_ray(opt,pose,intr=intr) # [B,HW,3]
-        print(batch_size)
-        print(pose[0])
+        print("Batch size" , batch_size)
+        print("pose[0]: ", pose[0])
         print("Rendering ", self.nerf.progress.data)
         # print(center.shape, ray.shape)
         # print(center[0]) # center equivalent

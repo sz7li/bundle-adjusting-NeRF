@@ -236,6 +236,7 @@ class Graph(nerf.Graph):
             pose_refine = camera.lie.se3_to_SE3(var.se3_refine)
             pose = camera.pose.compose([pose_refine,pose])
         elif mode in ["val","eval","test-optim"]:
+            print("mode is ", ["val","eval","test-optim"])
             # align test pose to refined coordinate system (up to sim3)
             sim3 = self.sim3
             center = torch.zeros(1,1,3,device=opt.device)
@@ -247,7 +248,9 @@ class Graph(nerf.Graph):
             # additionally factorize the remaining pose imperfection
             if opt.optim.test_photo and mode!="val":
                 pose = camera.pose.compose([var.pose_refine_test,pose])
-        else: pose = var.pose
+        else:
+            print("Pose is ", var.pose) 
+            pose = var.pose
         return pose
 
 class NeRF(nerf.NeRF):

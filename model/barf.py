@@ -233,9 +233,14 @@ class Graph(nerf.Graph):
                 pose = self.pose_eye
             # add learnable pose correction
             var.se3_refine = self.se3_refine.weight[var.idx]
+            print("se3 refine ", pose_refine)
             pose_refine = camera.lie.se3_to_SE3(var.se3_refine)
+            print("pose refine ", pose_refine)
             pose = camera.pose.compose([pose_refine,pose])
-            print("Learnable pose correction ", pose)
+            # print("Learnable pose correction ", pose)
+            print("Pose shape ", pose.shape)
+            
+            
         elif mode in ["val","eval","test-optim"]:
             print("mode is ", ["val","eval","test-optim"])
             print(var.pose)

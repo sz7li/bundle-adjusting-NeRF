@@ -223,7 +223,9 @@ class Graph(nerf.Graph):
                     var.pose_noise = self.pose_noise[var.idx]
                     pose = camera.pose.compose([var.pose_noise,var.pose])
                 else: pose = var.pose
-            else: pose = self.pose_eye
+            else: 
+                print("Setting pose to ", self.pose_eye)
+                pose = self.pose_eye
             # add learnable pose correction
             var.se3_refine = self.se3_refine.weight[var.idx]
             pose_refine = camera.lie.se3_to_SE3(var.se3_refine)

@@ -233,7 +233,8 @@ class Graph(base.Graph):
         batch_size = len(pose)
         center,ray = camera.get_center_and_ray(opt,pose,intr=intr) # [B,HW,3]
         print("Rendering ")
-        print(center[0])
+        print(center.shape, ray.shape)
+        print(center[0]) # center equivalent
         print(ray[0])
         while ray.isnan().any(): # TODO: weird bug, ray becomes NaN arbitrarily if batch_size>1, not deterministic reproducible
             center,ray = camera.get_center_and_ray(opt,pose,intr=intr) # [B,HW,3]

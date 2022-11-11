@@ -25,7 +25,7 @@ def main():
         m.setup_optimizer(opt)
         m.restore_checkpoint(opt)
         m.setup_visualizer(opt)
-
+        print("m.train")
         m.train(opt)
 
 if __name__=="__main__":

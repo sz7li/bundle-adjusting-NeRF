@@ -206,8 +206,10 @@ class Graph(base.Graph):
         if opt.nerf.rand_rays and mode in ["train","test-optim"]:
             # sample random rays for optimization
             var.ray_idx = torch.randperm(opt.H*opt.W,device=opt.device)[:opt.nerf.rand_rays//batch_size]
+            print("Var ray idx", var.ray_idx)
             ret = self.render(opt,pose,intr=var.intr,ray_idx=var.ray_idx,mode=mode) # [B,N,3],[B,N,1]
         else:
+            print("not opt nerf rand_rays", var.ray_idx)
             # render full image (process in slices)
             ret = self.render_by_slices(opt,pose,intr=var.intr,mode=mode) if opt.nerf.rand_rays else \
                   self.render(opt,pose,intr=var.intr,mode=mode) # [B,HW,3],[B,HW,1]
@@ -234,8 +236,9 @@ class Graph(base.Graph):
     def render(self,opt,pose,intr=None,ray_idx=None,mode=None):
         batch_size = len(pose)
         center,ray = camera.get_center_and_ray(opt,pose,intr=intr) # [B,HW,3]
-        print("Batch size" , batch_size)
-        print("pose[0]: ", pose[0])
+        print("center and ray shape ", center.shape, ray.shape)
+        print(center[0], ray[0])
+        print("Batch size" , batch_size) # 37
         print("Rendering ", self.nerf.progress.data)
         # print(center.shape, ray.shape)
         # print(center[0]) # center equivalent

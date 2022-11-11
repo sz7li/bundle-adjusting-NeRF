@@ -81,12 +81,12 @@ class Lie():
         return w
 
     def se3_to_SE3(self,wu): # [...,3]
-        w,u = wu.split([3,3],dim=-1)
+        w,u = wu.split([3,3],dim=-1) # w is [37, 3], u is [37, 3]
         print("Split w, u ", w.shape, u.shape)
         wx = self.skew_symmetric(w)
-        print(wx.shape)
+        print(wx.shape, wx[0]) # wx is 37, 3, 3
         theta = w.norm(dim=-1)[...,None,None]
-        print(theta)
+        print(theta.shape)
         I = torch.eye(3,device=w.device,dtype=torch.float32)
         A = self.taylor_A(theta)
         B = self.taylor_B(theta)

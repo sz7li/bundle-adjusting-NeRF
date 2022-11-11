@@ -81,8 +81,8 @@ class Lie():
         return w
 
     def se3_to_SE3(self,wu): # [...,3]
-        print("Split w, u ", w.shape, u.shape)
         w,u = wu.split([3,3],dim=-1)
+        print("Split w, u ", w.shape, u.shape)
         wx = self.skew_symmetric(w)
         print(wx.shape)
         theta = w.norm(dim=-1)[...,None,None]
@@ -94,7 +94,7 @@ class Lie():
         R = I+A*wx+B*wx@wx
         V = I+B*wx+C*wx@wx
         Rt = torch.cat([R,(V@u[...,None])],dim=-1)
-        print(RT)
+        print(Rt)
         return Rt
 
     def SE3_to_se3(self,Rt,eps=1e-8): # [...,3,4]

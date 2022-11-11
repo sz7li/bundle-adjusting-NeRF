@@ -86,15 +86,14 @@ class Lie():
         wx = self.skew_symmetric(w)
         print(wx.shape, wx[0]) # wx is 37, 3, 3
         theta = w.norm(dim=-1)[...,None,None]
-        print(theta.shape)
+        print("Theta shape" , theta.shape)
         I = torch.eye(3,device=w.device,dtype=torch.float32)
         A = self.taylor_A(theta)
         B = self.taylor_B(theta)
         C = self.taylor_C(theta)
         R = I+A*wx+B*wx@wx
         V = I+B*wx+C*wx@wx
-        Rt = torch.cat([R,(V@u[...,None])],dim=-1)
-        print(Rt)
+        Rt = torch.cat([R,(V@u[...,None])],dim=-1) # 37, 3, 4
         return Rt
 
     def SE3_to_se3(self,Rt,eps=1e-8): # [...,3,4]

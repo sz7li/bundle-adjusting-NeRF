@@ -117,6 +117,7 @@ class Model():
         if (self.ep+1)%opt.freq.ckpt==0: self.save_checkpoint(opt,ep=self.ep+1,it=self.it)
 
     def train_iteration(self,opt,var,loader):
+        print("BASE train_teration")
         # before train iteration
         self.timer.it_start = time.time()
         # train iteration

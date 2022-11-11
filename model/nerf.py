@@ -201,7 +201,7 @@ class Graph(base.Graph):
     def forward(self,opt,var,mode=None):
         print("Forward in nerf.graph")
         batch_size = len(var.idx)
-        pose = self.get_pose(opt,var,mode=mode)
+        pose = self.get_pose(opt,var,mode=mode) # barf.graph.get_pose
         # render images
         if opt.nerf.rand_rays and mode in ["train","test-optim"]:
             # sample random rays for optimization

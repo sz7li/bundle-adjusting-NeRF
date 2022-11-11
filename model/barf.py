@@ -44,6 +44,7 @@ class Model(nerf.Model):
             self.sched_pose = scheduler(self.optim_pose,**kwargs)
 
     def train_iteration(self,opt,var,loader):
+        print("TRAIN iteration in barf.py.train_teration")
         self.optim_pose.zero_grad()
         if opt.optim.warmup_pose:
             # simple linear warmup of pose learning rate
@@ -236,10 +237,10 @@ class Graph(nerf.Graph):
             print("var idx ", var.idx) #[0, 1, ... 36]
             print("refine[0] ", var.se3_refine[0])
             pose_refine = camera.lie.se3_to_SE3(var.se3_refine)
-            print("pose refine ", pose_refine[0]) # 37 x 3 x 3
+            print("pose refine ", pose_refine[0]) # 37 x 3 x 4
             pose = camera.pose.compose([pose_refine,pose])
             # print("Learnable pose correction ", pose)
-            print("Pose shape ", pose.shape)
+            print("Pose shape ", pose.shape) # 37 x 3 x 4
 
             
         elif mode in ["val","eval","test-optim"]:

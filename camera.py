@@ -82,7 +82,9 @@ class Lie():
 
     def se3_to_SE3(self,wu): # [...,3]
         w,u = wu.split([3,3],dim=-1)
+        print(w, u)
         wx = self.skew_symmetric(w)
+        print(wx)
         theta = w.norm(dim=-1)[...,None,None]
         I = torch.eye(3,device=w.device,dtype=torch.float32)
         A = self.taylor_A(theta)
